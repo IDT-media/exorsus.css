@@ -1,0 +1,80 @@
+/**
+ * @package exors.us
+ * @component notification.less
+ * @description Notification container styles and variations
+ */
+
+// Variables
+// ========================================================================
+@notification-variations: {
+    default: @color-default;
+    primary: @color-primary;
+    secondary: @color-secondary;
+    link: @link-color;
+    error: @error;
+    danger: @danger;
+    warning: @warning;
+    success: @success;
+    notice: @notice;
+    highlight: @highlight;
+}
+
+// Mixins
+// ========================================================================
+.make-notification-colors(@colors: @notification-variations) {
+
+    each(@colors, {
+        &.is-@{key} {
+            background-color: @value;
+
+            & when (luma(@value) >= 65%) {
+                color: darken(@value, 50%);
+            }
+
+            & when (luma(@value) < 65%) {
+                color: lighten(@value, 80%);
+            }
+        }
+    });
+};
+// Component
+// ========================================================================
+
+.notification {
+    position: relative;
+    border-radius: @radius;
+    background-color: @color-default;
+    padding: @spacing-lg @spacing-lg;
+    color: @color-light;
+
+    &:not(:last-child) {
+        margin-bottom: @spacing-sm;
+    }
+
+    & a:not(.btn) {
+        text-decoration: underline;
+        color: currentColor;
+    }
+
+    & * {
+        color: currentColor;
+    }
+
+    & > .btn-clear {
+        position: absolute;
+        top: .5rem;
+        right: .5rem;
+    }
+
+    &.is-small {
+        padding: @spacing-md @spacing-md;
+        font-size: @text[small];
+    }
+
+    &.is-large {
+        padding: @spacing-lg @spacing-lg;
+        font-size: @text[large];
+    }
+
+    .make-notification-colors;
+}

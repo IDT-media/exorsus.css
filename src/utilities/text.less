@@ -1,0 +1,151 @@
+/**
+ * @package exors.us
+ * @component text.less
+ * @description Helper classes for various text manipulations
+ */
+
+
+// Mixins
+// ========================================================================
+.text-size(@size,@name) {
+
+    .text@{name} {
+        font-size: @size;
+    }
+};
+
+.build-text-size() {
+
+    .make-text-size(@class: ~'') {
+        each(@text, {
+            .text-size(@value, ~"@{class}-@{key}");
+        });
+    };
+
+    .make-text-size();
+
+    each(@breakpoints, {
+        .mq-max(@value, {
+            .make-text-size(~"-@{key}");
+        });
+    });
+};
+
+// Component
+// ========================================================================
+.text {
+
+    // Modifiers
+    &-ellipsis {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &-break {
+        word-break: break-all;
+        word-break: break-word;
+        hyphens: auto;
+        overflow-wrap: break-word;
+    }
+
+    &-clip {
+        overflow: hidden;
+        text-overflow: clip;
+        white-space: nowrap;
+    }
+
+    &-nowrap {
+        white-space: nowrap;
+    }
+
+    // Align
+    &-left {
+        text-align: left;
+    }
+
+    &-right {
+        text-align: right;
+    }
+
+    &-center {
+        text-align: center;
+    }
+
+    &-justify {
+        text-align: justify;
+    }
+
+    // Vertical align
+    &-top {
+        vertical-align: top;
+    }
+
+    &-middle {
+        vertical-align: middle;
+    }
+
+    &-bottom {
+        vertical-align: bottom;
+    }
+
+    &-baseline {
+        vertical-align: baseline;
+    }
+
+    // Weight
+    &-light {
+        font-weight: 300;
+    }
+
+    &-regular {
+        font-weight: 400;
+    }
+
+    &-bolder {
+        font-weight: 500;
+    }
+
+    &-bold {
+        font-weight: 700;
+    }
+
+    &-extra-bold {
+        font-weight: 900;
+    }
+
+    // Transforms
+    &-uppercase {
+        text-transform: uppercase;
+    }
+
+    &-capitalize {
+        text-transform: capitalize;
+    }
+
+    &-lowercase {
+        text-transform: lowercase;
+    }
+
+    // Styles
+    &-italic {
+        font-style: italic;
+    }
+
+    &-normal {
+        font-style: normal;
+    }
+
+    // Visibility {
+    &-hide {
+        border: 0;
+        background: transparent;
+        text-shadow: none;
+        line-height: 0;
+        color: transparent;
+        font-size: 0;
+    }
+}
+
+// Sizes
+.build-text-size();

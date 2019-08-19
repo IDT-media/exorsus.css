@@ -1,0 +1,39 @@
+/**
+ * @package exors.us
+ * @component shadow.less
+ * @description Helper classes for basic shadow on elements
+ */
+
+// Mixins
+// ========================================================================
+// Build shadow vairations
+.build-shadow-variations(@shadow: @shadow) {
+    each(@shadow, {
+        &-shadow-@{key} {
+            box-shadow: @value;
+        }
+    });
+
+    each(@shadow, {
+        &-shadow-hover-@{key}:hover {
+            box-shadow: @value;
+        }
+    });
+}
+
+// Component
+// ========================================================================
+.has {
+
+    .build-shadow-variations;
+}
+
+.remove-shadow,
+.remove-shadow-hover:hover {
+    box-shadow: none !important;
+}
+
+[class*='has-shadow'],
+[class*='remove-shadow'] {
+    transition: box-shadow 200ms ease-in-out;
+}

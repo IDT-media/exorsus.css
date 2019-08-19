@@ -1,0 +1,110 @@
+/**
+ * @package exors.us
+ * @component spacing.less
+ * @description Helper classes for spacing options of an element using margins or padding
+ */
+
+// Mixins
+// ========================================================================
+.spacing(@size, @name, @type) {
+
+    .@{type} {
+        &@{name} {
+            margin: @size;
+        }
+
+        &-left@{name} {
+            margin-left: @size;
+        }
+
+        &-right@{name} {
+            margin-right: @size;
+        }
+
+        &-top@{name} {
+            margin-top: @size;
+        }
+
+        &-bottom@{name} {
+            margin-bottom: @size;
+        }
+
+        &-vertical@{name} {
+            margin-top: @size;
+            margin-bottom: @size;
+        }
+
+        &-horizontal@{name} {
+            margin-left: @size;
+            margin-right: @size;
+        }
+    }
+};
+
+.remove-spacing(@name, @type) {
+
+    .remove-@{type} {
+        &@{name} {
+            margin: 0;
+        }
+
+        &-left@{name} {
+            margin-left: 0;
+        }
+
+        &-right@{name} {
+            margin-right: 0;
+        }
+
+        &-top@{name} {
+            margin-top: 0;
+        }
+
+        &-bottom@{name} {
+            margin-bottom: 0;
+        }
+
+        &-vertical@{name} {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        &-horizontal@{name} {
+            margin-right: 0;
+            margin-left: 0;
+        }
+    }
+};
+
+.build-spacing(@type) {
+
+    .make-spacing(@class: ~'') {
+        each(@spacing, {
+            .spacing(@value, ~"@{class}-@{key}", @type);
+        });
+    };
+
+    .make-spacing();
+    .remove-spacing(@name: ~'', @type) !important;
+
+    each(@breakpoints, {
+        .mq-max(@value, {
+            .make-spacing(~"-@{key}");
+            .remove-spacing(~"-@{key}", @type) !important;
+        });
+    });
+
+    .mq-min(@breakpoints[xl], {
+        .make-spacing(-xxl);
+        .remove-spacing(-xxl, @type) !important;
+    });
+};
+
+// Component
+// ========================================================================
+
+// Margins
+.build-spacing(margin);
+
+// Paddings
+.build-spacing(padding);

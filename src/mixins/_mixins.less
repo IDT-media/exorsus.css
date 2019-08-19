@@ -1,0 +1,38 @@
+// Media query
+.mq-min(@breakpoint, @rules) {
+    @media screen and (min-width: @breakpoint + 1) {
+        @rules();
+    }
+}
+.mq-max(@breakpoint, @rules) {
+    @media screen and (max-width: @breakpoint) {
+        @rules();
+    }
+}
+
+// Clearfix
+.clearfix() {
+    &::after {
+        clear: both;
+        content: "";
+        display: table;
+    }
+}
+
+// Visiibility
+.assistive() {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+// Shadow
+.shadow-small(@color: @color-dark) {
+    box-shadow: 0 0 5px fade(@color, 20%);
+}

@@ -1,0 +1,8 @@
+// SVG Arrow
+.svg-arrow(@color: @input-arrow) {
+    @fill: escape(@color);
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%204%205'%3E%3Cpath%20fill='@{fill}'%20d='M2%200L0%202h4zm0%205L0%203h4z'/%3E%3C/svg%3E");
+    background-position: right @spacing-sm center;
+    background-repeat: no-repeat;
+    background-size: @text[xsmall] @text[xsmall];
+};

@@ -1,0 +1,58 @@
+/**
+ * @package exors.us
+ * @component positions.less
+ * @description Helper classes for positions and floats
+ */
+
+// Component
+// ========================================================================
+// Clearfix
+.clearfix {
+    .clearfix;
+}
+
+// Floating
+.float {
+
+    &-left {
+        float: left;
+    }
+
+    &-right {
+        float: right;
+    }
+
+    &-reset {
+        float: none !important;
+    }
+}
+
+[class*='float-'] {
+    max-width: 100%;
+}
+
+// Position
+.is {
+    &-relative {
+        position: relative;
+    }
+
+    &-absolute {
+        position: absolute;
+    }
+
+    &-fixed {
+        position: fixed;
+    }
+
+    &-sticky {
+        position: sticky;
+    }
+
+    &-centered {
+        display: block;
+        float: none;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}

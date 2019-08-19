@@ -1,0 +1,415 @@
+/**
+ * @package exors.us
+ * @component form.less
+ * @description A component for basic form and form input styles
+ */
+
+.form {
+
+    // Types
+    &-horizontal {
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+
+    // Fields
+    &-group {
+        margin-bottom: @spacing-sm;
+    }
+
+    // Labels
+    &-label {
+        display: block;
+        padding-top: @spacing-sm;
+        padding-bottom: @spacing-sm;
+
+        &.is-small {
+            font-size: @text[small];
+        }
+
+        &.is-large {
+            font-size: @text[large];
+        }
+    }
+
+    // Hints
+    &-hint {
+        margin-top: @spacing-sm;
+        color: lighten(@input-color, 20%);
+        font-size: @text[small];
+
+        .has-success &,
+        .is-success + & {
+            color: @success;
+        }
+
+        .has-error &,
+        .is-error + & {
+            color: @danger;
+        }
+    }
+}
+
+.input {
+    // Input
+    &-field,
+    &-select,
+    &-addon {
+        appearance: none;
+        display: block;
+        position: relative;
+        transition: background 200ms, border 200ms, box-shadow 200ms, color 200ms;
+        outline: transparent;
+        border: @border-width solid @border-color;
+        border-radius: @radius-sm;
+        background-color: @input-background;
+        background-image: none;
+        padding: @spacing-sm @spacing-sm;
+        width: 100%;
+        max-width: 100%;
+        height: @input-size;
+        line-height: 1.5;
+        color: @input-color;
+        font-size: @body-font-size;
+
+        &:focus,
+        &:hover {
+            border-color: @border-color-darker;
+        }
+
+        &::placeholder {
+            opacity: 1;
+            color: lighten(@input-color, 35%);
+        }
+
+        &[type="file"] {
+            height: auto;
+        }
+
+        // Sizing anb display
+        &.is-small {
+            padding: @spacing-xs @spacing-sm;
+            height: @input-size / 1.285;
+            font-size: @text[xsmall];
+        }
+
+        &.is-large {
+            padding: @spacing-sm @spacing-sm;
+            height: @input-size * 1.16;
+            font-size: @text[large];
+        }
+
+        //Validation states
+        .has-success &,
+        &.is-success {
+            border-color: @success;
+
+            &:focus,
+            &:hover {
+                .shadow-small(@success);
+            }
+        }
+
+        .has-error &,
+        &.is-error {
+            border-color: @danger;
+
+            &:focus,
+            &:hover {
+                .shadow-small(@danger);
+            }
+        }
+
+        // Disabled state
+        &:disabled,
+        &.disabled {
+            opacity: .7;
+            background-color: @disabled;
+            cursor: not-allowed;
+        }
+    }
+
+    &-addon {
+        box-shadow: none !important;
+        background-color: @color-light;
+        width: auto;
+        white-space: nowrap;
+    }
+
+    // Select & select multiple
+    &-select {
+
+        &[size],
+        &[multiple] {
+            height: auto;
+
+            option {
+                padding: @spacing-xs @spacing-sm;
+            }
+        }
+
+        &:not([multiple]):not([size]) {
+            .svg-arrow();
+        }
+    }
+
+    // checkbox & radio
+    &-checkbox,
+    &-radio {
+        display: block;
+        position: relative;
+        margin: @spacing-sm 0;
+        padding-right: @spacing-sm;
+        padding-left: @input-size / 1.5;
+        min-height: @input-size / 2;
+
+        & .input-icon {
+            display: inline-block;
+            position: absolute;
+            transition: background 200ms, border 200ms, box-shadow 200ms, color 200ms;
+            border: @border-width solid @border-color;
+            cursor: pointer;
+        }
+
+        & input {
+            .assistive();
+
+            &:focus,
+            &:hover {
+
+                & + .input-icon {
+                    border-color: @border-color-darker;
+                }
+            }
+
+            &:checked {
+
+                & + .input-icon {
+                    border-color: @border-color-darker;
+                    background-color: @border-color;
+                }
+            }
+        }
+
+        & .input-icon {
+            top: .2rem;
+            left: 0;
+            border-radius: @radius-sm;
+            background-color: @input-background;
+            width: @input-size / 2;
+            height: @input-size / 2;
+        }
+
+        &.is-small {
+            padding-left: (@input-size / 1.285) / 1.5;
+            min-height: (@input-size / 1.285) / 2;
+            font-size: @text[small];
+
+            & .input-icon {
+                top: .3rem;
+                width: (@input-size / 1.285) / 2;
+                height: (@input-size / 1.285) / 2;
+            }
+        }
+
+        &.is-large {
+            padding-left: (@input-size * 1.16) / 1.5;
+            min-height: (@input-size * 1.16) / 2;
+            font-size: @text[large];
+
+            & .input-icon {
+                top: .3rem;
+                width: (@input-size * 1.16) / 2;
+                height: (@input-size * 1.16) / 2;
+            }
+        }
+
+        // Validation states
+        .has-error &,
+        &.is-error {
+
+            & .input-icon {
+                border-color: @danger;
+            }
+
+            & input {
+
+                &:focus,
+                &:hover {
+
+                    & + .input-icon {
+                        .shadow-small(@danger);
+                        border-color: @danger;
+                    }
+                }
+
+                &:checked {
+
+                    & + .input-icon {
+                        border-color: @danger;
+                        background-color: @danger;
+                    }
+                }
+            }
+        }
+
+        .has-success &,
+        &.is-success {
+
+            & .input-icon {
+                border-color: @success;
+            }
+
+            & input {
+
+                &:focus,
+                &:hover {
+
+                    & + .input-icon {
+                        border-color: @success;
+                        .shadow-small(@success);
+                    }
+                }
+
+                &:checked {
+
+                    & + .input-icon {
+                        border-color: @success;
+                        background-color: @success;
+                    }
+                }
+            }
+        }
+
+        // Disabled state
+        & input:disabled,
+        & input.disabled {
+
+            & + .input-icon {
+                opacity: .7;
+                cursor: not-allowed;
+            }
+        }
+    }
+
+    &-checkbox {
+
+        & input {
+
+            &:checked {
+
+                & + .input-icon {
+
+                    &::before {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: rotate(45deg);
+                        margin-top: -6px;
+                        margin-left: -2px;
+                        border: @border-width-md solid @color-light;
+                        border-top-width: 0;
+                        border-left-width: 0;
+                        background-clip: padding-box;
+                        width: 5px;
+                        height: 10px;
+                        content: "";
+                    }
+                }
+            }
+        }
+    }
+
+    &-radio {
+        & .input-icon {
+            border-radius: @radius-circle;
+        }
+
+        & input {
+
+            &:checked {
+
+                & + .input-icon {
+                    &::before {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        border-radius: @radius-circle;
+                        background: @color-light;
+                        width: 6px;
+                        height: 6px;
+                        content: "";
+                    }
+                }
+            }
+        }
+    }
+
+    // inline fields
+    &-inline {
+        display: inline-block;
+        width: auto;
+        vertical-align: middle;
+    }
+}
+
+// Grouping input fields
+// @depends utilities/group.less
+.is-group {
+
+    .input-field,
+    .input-select {
+        flex: 1 1 auto;
+        width: 1%;
+    }
+
+    .input-addon,
+    .input-field,
+    .input-select {
+        &:first-child:not(:last-child) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        &:not(:first-child):not(:last-child) {
+            margin-left: -@border-width;
+            border-radius: 0;
+        }
+
+        &:last-child:not(:first-child) {
+            margin-left: -@border-width;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        &:focus,
+        &:hover {
+            z-index: 1;
+        }
+    }
+}
+
+// Textarea
+textarea.input-field {
+    &,
+    &.input-lg,
+    &.input-sm {
+        height: auto;
+    }
+}
+
+// Fieldset & Legend
+fieldset {
+    margin-bottom: @spacing-md;
+    border: none;
+    padding: 0;
+}
+
+legend {
+    margin-bottom: @spacing-md;
+    font-size: @text[large];
+}

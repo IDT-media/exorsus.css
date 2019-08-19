@@ -1,0 +1,126 @@
+/**
+ * @package exors.us
+ * @component layout.less
+ * @description Base component for the layout view, handling container size and grid column positions
+ */
+
+// Mixins
+// ========================================================================
+.build-size(@breakpoints) {
+    each(@breakpoints, {
+        &.size-@{key} {
+            max-width: @value + 2 * (@layout-spacing * 10);
+        }
+    });
+};
+
+// Flex alignement
+.flex-align(@class: ~'') {
+
+    .align@{class}-start {
+        justify-content: flex-start;
+        text-align: start;
+    }
+
+    .align@{class}-center {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .align@{class}-end {
+        justify-content: flex-end;
+        text-align: end;
+    }
+
+    .align@{class}-top {
+        align-items: flex-start;
+    }
+
+    .align@{class}-middle {
+        align-items: center;
+    }
+
+    .align@{class}-bottom {
+        align-items: flex-end;
+    }
+
+    .align@{class}-around {
+        justify-content: space-around;
+    }
+
+    .align@{class}-between {
+        justify-content: space-between;
+    }
+
+    .align@{class}-first {
+        order: -1;
+    }
+
+    .align@{class}-last {
+        order: 1;
+    }
+
+    .align@{class}-reverse {
+        flex-direction: row-reverse;
+    }
+};
+
+// Flex direction
+.flex-direction(@class: ~'') {
+
+    .direction@{class}-row {
+        flex-direction: row;
+    }
+
+    .direction@{class}-row-reverse {
+        flex-direction: row-reverse;
+    }
+
+    .direction@{class}-column {
+        flex-direction: column;
+        &.align-reverse {
+            flex-direction: column-reverse;
+        }
+    }
+
+    .direction@{class}-column-reverse {
+        flex-direction: column;
+        flex-wrap: wrap-reverse;
+        &.align-reverse {
+            flex-direction: column-reverse;
+        }
+    }
+}
+
+.build-flex() {
+    .flex-align();
+    .flex-direction();
+
+    each(@breakpoints, {
+        .mq-max(@value, {
+            .flex-align(~"-@{key}");
+            .flex-direction(~"-@{key}");
+        });
+    });
+};
+
+// Component
+// ========================================================================
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: @layout-spacing;
+    padding-left: @layout-spacing;
+    width: 100%;
+    .clearfix;
+
+    & .container {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+// Max width container manipulator
+.build-size(@breakpoints);
+// Flex alignement helper
+.build-flex;

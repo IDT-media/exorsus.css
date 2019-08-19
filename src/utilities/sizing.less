@@ -1,0 +1,54 @@
+/**
+ * @package exors.us
+ * @component sizing.less
+ * @description Size helper classes
+ */
+
+// Component
+// ========================================================================
+
+// Sizing
+.has {
+
+    &-size {
+        &-x2 {
+            font-size: @text[medium] * 2;
+        }
+
+        &-x3 {
+            font-size: @text[medium] * 3;
+        }
+
+        &-x4 {
+            font-size: @text[medium] * 4;
+        }
+
+        &-x5 {
+            font-size: @text[medium] * 5;
+        }
+    }
+
+
+    &-scale {
+        &-x2 {
+            transform: scale(2);
+        }
+
+        &-x3 {
+            transform: scale(3);
+        }
+
+        &-x4 {
+            transform: scale(4);
+        }
+
+        &-x5 {
+            transform: scale(5);
+        }
+    }
+}
+
+[class*='has-scale-'] {
+    display: inline-block;
+    transform-origin: center;
+}

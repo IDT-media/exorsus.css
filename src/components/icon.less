@@ -1,0 +1,56 @@
+/**
+ * @package exors.us
+ * @component icon.less
+ * @description icon container element for use with font or svg icons
+ */
+
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: @text[medium];
+    height: @text[medium];
+
+    &.is-small {
+        width: @text[small];
+        height: @text[small];
+    }
+
+    &.is-large {
+        width: @text[large];
+        height: @text[large];
+    }
+
+    & > svg {
+        fill: currentColor;
+    }
+}
+
+// CSS Icons
+.icon {
+
+    &-clear,
+    &-close {
+        &:before,
+        &:after {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%) rotate(45deg);
+            transform-origin: center center;
+            background-color: @color-light;
+            content: "";
+        }
+
+        &:before {
+            width: 50%;
+            height: 2px;
+        }
+
+        &:after {
+            width: 2px;
+            height: 50%;
+        }
+    }
+}

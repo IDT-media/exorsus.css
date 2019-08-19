@@ -1,0 +1,49 @@
+/**
+ * @package exors.us
+ * @component colour.less
+ * @description Colour helper utilities
+ */
+
+// Variables
+// ========================================================================
+@colors: {
+    white: #FFFFFF;
+    black: #000000;
+    default: @color-default;
+    primary: @color-primary;
+    secondary: @color-secondary;
+    link: @link-color;
+    light: @color-light;
+    lighter: @color-lighter;
+    darker: @color-darker;
+    dark: @color-dark;
+    error: @error;
+    danger: @danger;
+    warning: @warning;
+    success: @success;
+    notice: @notice;
+    highlight: @highlight;
+}
+// Mixins
+// ========================================================================
+
+.build-color-variations(@colors: @colors) {
+
+    each(@colors, {
+        &-text-@{key} {
+            color: @value;
+        }
+    });
+
+    each(@colors, {
+        &-background-@{key} {
+            background-color: @value;
+        }
+    });
+};
+
+// Component
+// ========================================================================
+.has {
+    .build-color-variations !important;
+}

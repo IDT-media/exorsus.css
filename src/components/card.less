@@ -1,0 +1,96 @@
+/**
+ * @package exors.us
+ * @component card.less
+ * @description A flexible content container with different elements to mix and match
+ */
+
+// Component
+// ========================================================================
+
+.card {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    max-width: 100%;
+    background-color: @color-light;
+    border-radius: @radius;
+
+    &.has-border {
+        border: @border-width solid @border-color;
+    }
+
+    &-media {
+        display: block;
+        position: relative;
+        overflow: hidden;
+
+        &:first-child {
+
+            & img {
+                border-top-left-radius: @radius;
+                border-top-right-radius: @radius;
+            }
+        }
+
+        &:last-child {
+
+            & img {
+                border-bottom-left-radius: @radius;
+                border-bottom-right-radius: @radius;
+            }
+        }
+    }
+
+    &-header,
+    &-content,
+    &-footer,
+    &-meta {
+
+        &:not(.has-items) {
+            padding: @spacing-md @spacing-lg;
+        }
+
+        & :first-child {
+            margin-top: 0;
+        }
+
+        & :last-child {
+            margin-bottom: 0;
+        }
+
+        &.has-border:not(:last-child) {
+            border-bottom: @border-width solid @border-color;
+        }
+
+        &:not(.has-border) + .has-border:last-child {
+            border-top: @border-width solid @border-color;
+        }
+
+        &.has-items {
+            display: flex;
+            align-items: stretch;
+        }
+    }
+
+    &-meta {
+        font-size: @text[small];
+    }
+
+    &-content {
+        flex: 1 1 auto;
+    }
+
+    &-item {
+        align-items: center;
+        display: flex;
+        flex-basis: 0;
+        flex-grow: 1;
+        flex-shrink: 0;
+        justify-content: center;
+        padding: @spacing-md;
+
+        &:not(:last-child) {
+            border-right: @border-width solid @border-color;
+        }
+    }
+}

@@ -1,0 +1,306 @@
+/**
+ * @package exors.us
+ * @component button.less
+ * @description Button styles and variations
+ */
+
+// Variables
+// ========================================================================
+@btn-variations: {
+    white: #FFFFFF;
+    black: #000000;
+    default: @color-default;
+    primary: @color-primary;
+    secondary: @color-secondary;
+    link: @link-color;
+    light: @color-light;
+    lighter: @color-lighter;
+    darker: @color-darker;
+    dark: @color-dark;
+    error: @error;
+    danger: @danger;
+    warning: @warning;
+    success: @success;
+    notice: @notice;
+    highlight: @highlight;
+}
+// Mixins
+// ========================================================================
+.make-btn-colors(@colors: @btn-variations) {
+
+    each(@colors, {
+        & when not (@key = link) {
+            &.is-@{key} {
+                background-color: @value;
+                border-color: @value;
+
+                &:hover,
+                &:focus,
+                &.is-selected {
+                    background-color: darken(@value, 4%);
+                    border-color: darken(@value, 4%);
+                }
+
+                &:active,
+                &.is-selected {
+                    border-color: darken(@value, 5%);
+                    box-shadow: 0 0 2px fade(@value, 25%);
+                }
+
+                & when (luma(@value) < 65%) {
+                    color: lighten(@value, 80%);
+                }
+            }
+        }
+
+        & when (@key = link) {
+            &.is-@{key} {
+                background-color: transparent;
+                border-color: transparent;
+                color: @value;
+
+                &:hover,
+                &:focus,
+                &.is-selected {
+                    color: @link-color-hover;
+                }
+            }
+        }
+    });
+
+    each(@colors, {
+        & when not (@key = link) and not (@key = white) and not (@key = light) {
+            &.is-@{key}.is-outlined {
+                background-color: transparent;
+                border-color: @value;
+                color: @value;
+
+                &:hover,
+                &:focus,
+                &.is-selected {
+                    background-color: darken(@value, 4%);
+                    border-color: darken(@value, 4%);
+                    & when (luma(@value) >= 65%) {
+                        color: darken(@value, 50%);
+                    }
+                    & when (luma(@value) < 65%) {
+                        color: lighten(@value, 80%);
+                    }
+                }
+
+                &:active,
+                &.is-selected {
+                    border-color: darken(@value, 5%);
+                    box-shadow: 0 0 2px fade(@value, 25%);
+                }
+            }
+        }
+    });
+};
+// Component
+// ========================================================================
+.btn {
+
+    // Basic button
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 200ms, border 200ms, box-shadow 200ms, color 200ms;
+    outline: none;
+    border: @border-width solid @border-color;
+    border-radius: @radius-sm;
+    background-color: @color-light;
+    cursor: pointer;
+    padding: @spacing-sm @spacing-lg;
+    height: @input-size;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    color: @input-color;
+    font-size: @body-font-size;
+    user-select: none;
+
+    // Default button size
+    &.is-medium {
+        &:extend(.btn);
+    }
+
+    // action button like an icon button
+    &.is-action {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    // button states
+    &:focus {
+        outline: transparent;
+    }
+
+    &:focus,
+    &:hover {
+        border-color: @border-color-darker;
+        text-decoration: none;
+    }
+
+    &:active,
+    &.active {
+        border-color: darken(@border-color-darker, 5%);
+        text-decoration: none;
+    }
+
+    &[disabled],
+    &:disabled,
+    &.is-disabled {
+        opacity: .5;
+        cursor: not-allowed !important;
+        pointer-events: none;
+    }
+
+    // button sizes
+    &.is-small {
+        padding: @spacing-xs @spacing-sm;
+        height: @input-size / 1.285;
+        font-size: @text[xsmall];
+    }
+
+    &.is-large {
+        padding: @spacing-md @spacing-xl;
+        height: @input-size * 1.16;
+        font-size: @text[large];
+    }
+
+    &.is-full {
+        display: flex;
+        width: 100%;
+    }
+
+    // Buttons with icon
+    & .icon {
+
+        &,
+        .is-small&,
+        .is-medium&,
+        .is-large& {
+            
+            &:first-child:not(:last-child) {
+                margin-right: @spacing-sm;
+                margin-left: calc(-0.12em - @border-width);
+            }
+            &:last-child:not(:first-child) {
+                margin-right: calc(-0.12em - @border-width);
+                margin-left: @spacing-sm;
+            }
+            &:first-child:last-child {
+                margin-right: calc(-0.12em - @border-width);
+                margin-left: calc(-0.12em - @border-width);
+            }
+        }
+    }
+
+    // build all buttons
+    .make-btn-colors;
+
+    // clear/close button for modals and notifications
+    &-clear {
+        appearance: none;
+        display: inline-block;
+        position: relative;
+        flex-grow: 0;
+        flex-shrink: 0;
+        transition: background-color 200ms;
+        outline: 0;
+        border: none;
+        border-radius: @radius-circle;
+        background-color: fade(@color-dark, 20%);
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        vertical-align: top;
+        font-size: 0;
+        pointer-events: auto;
+
+        &:before,
+        &:after {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%) rotate(45deg);
+            transform-origin: center center;
+            background-color: @color-light;
+            content: "";
+        }
+
+        &:before {
+            width: 50%;
+            height: 2px;
+        }
+
+        &:after {
+            width: 2px;
+            height: 50%;
+        }
+
+        &.is-small,
+        .is-small &,
+        .is-medium & {
+            width: 16px;
+            height: 16px;
+        }
+
+        &:hover {
+            background-color: fade(@color-dark, 40%);
+        }
+    }
+}
+
+// Grouping buttons
+// @depends utilities/group.less
+.is-group {
+
+    & .btn {
+        .is-group-full& {
+            flex: 1 0 0;
+        }
+
+        &:first-child:not(:last-child) {
+            margin-right: 0;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        &:not(:first-child):not(:last-child) {
+            margin-right: 0;
+            margin-left: -@border-width;
+            border-radius: 0;
+        }
+
+        &:last-child:not(:first-child) {
+            margin-left: -@border-width;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        &:focus,
+        &:hover {
+            z-index: 1;
+        }
+    }
+}
+
+.has-group {
+
+    // group of buttons
+    & .btn {
+        margin-bottom: @spacing-sm;
+
+        &:not(:last-child) {
+            margin-right: @spacing-sm;
+        }
+        &.is-full {
+            margin-right: 0;
+        }
+    }
+}

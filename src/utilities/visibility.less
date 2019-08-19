@@ -1,0 +1,90 @@
+/**
+ * @package exors.us
+ * @component visiblity.less
+ * @description Visibility helper classes
+ */
+
+// Mixins
+// ========================================================================
+.visibility(@mq) {
+    .hide-@{mq} {
+        display: none;
+    }
+    .show-@{mq} {
+        display: block;
+    }
+    .show-@{mq}-inline {
+        display: inline;
+    }
+    .show-@{mq}-inline-block {
+        display: inline-block;
+    }
+    .show-@{mq}-flex {
+        display: flex;
+    }
+    .show-@{mq}-inline-flex {
+        display: inline-flex;
+    }
+
+};
+
+.build-visibility-variations() {
+    each(@breakpoints, {
+        .mq-max(@value, {
+            .visibility(@key) !important;
+        });
+    });
+
+    .mq-min(@breakpoints[xl], {
+        .visibility(xxl) !important;
+    });
+}
+
+
+// Component
+// ========================================================================
+[hidden] {
+    display: none !important;
+}
+
+.is-disabled,
+[disabled] {
+    pointer-events: none;
+}
+
+.is {
+
+    &-hidden {
+        &:extend([hidden]);
+    }
+
+    &-assistive {
+        .assistive;
+    }
+
+    &-invisible {
+        visibility: hidden;
+    }
+
+    &-visible {
+        visibility: visible;
+    }
+
+    &-clipped {
+        overflow: hidden !important;
+    }
+
+    &-clickable {
+        cursor: pointer;
+    }
+}
+
+.show-xs,
+.show-sm,
+.show-md,
+.show-lg,
+.show-xl {
+    display: none !important;
+}
+
+.build-visibility-variations;

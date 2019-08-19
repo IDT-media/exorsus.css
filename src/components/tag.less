@@ -1,0 +1,122 @@
+/**
+ * @package exors.us
+ * @component tag.less
+ * @description Small label elements usually used for tags or attention
+ */
+
+// Variables
+// ========================================================================
+@tag-variations: {
+    white: #FFFFFF;
+    black: #000000;
+    default: @color-default;
+    primary: @color-primary;
+    secondary: @color-secondary;
+    link: @link-color;
+    light: @color-light;
+    lighter: @color-lighter;
+    darker: @color-darker;
+    dark: @color-dark;
+    error: @error;
+    danger: @danger;
+    warning: @warning;
+    success: @success;
+    notice: @notice;
+    highlight: @highlight;
+}
+
+// Mixins
+// ========================================================================
+.make-tag-colors(@colors: @tag-variations) {
+
+    each(@colors, {
+        &.is-@{key} {
+            background-color: @value;
+
+            & when (luma(@value) >=65%) {
+                color: darken(@value, 50%);
+            }
+
+            & when (luma(@value) < 65%) {
+                color: lighten(@value, 80%);
+            }
+        }
+    });
+};
+
+// Component
+// ========================================================================
+.tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: @radius;
+    background-color: @color-lighter;
+    padding-right: @spacing-md;
+    padding-left: @spacing-md;
+    height: 1.8em;
+    white-space: nowrap;
+    font-size: @text[small];
+
+    // tag sizes
+    &.is-medium {
+        &:extend(.tag);
+    }
+
+    &.is-small {
+        padding-right: @spacing-md;
+        padding-left: @spacing-md;
+        font-size: @text[xsmall];
+    }
+
+    &.is-large {
+        padding-right: @spacing-lg;
+        padding-left: @spacing-lg;
+        font-size: @text[xlarge];
+    }
+
+    // clear button
+    & .btn-clear {
+        margin-right: -@spacing-xs;
+        margin-left: @spacing-sm;
+    }
+
+    // color variations
+    .make-tag-colors;
+}
+
+// Grouping tags
+// @depends utilities/group.less
+.is-group {
+
+    & .tag {
+
+        &:first-child:not(:last-child) {
+            margin-right: 0;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        &:not(:first-child):not(:last-child) {
+            margin-right: 0;
+            border-radius: 0;
+        }
+
+        &:last-child:not(:first-child) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+}
+
+// Tags group
+.has-group {
+
+    & .tag {
+        margin-bottom: @spacing-sm;
+
+        &:not(:last-child) {
+            margin-right: @spacing-sm;
+        }
+    }
+}

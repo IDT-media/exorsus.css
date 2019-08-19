@@ -1,0 +1,79 @@
+/**
+ * @package exors.us
+ * @component global.less
+ * @description A barebones starting point set basic styles to common elements
+ */
+*,
+*:after,
+*:before {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; // Set base font size to 16px
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background: @body-background;
+    color: @body-font-color;
+    font-family: @body-font-family;
+    font-size: @body-font-size;
+    line-height: @body-line-height;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+}
+
+a {
+    color: @link-color;
+    outline: transparent;
+    text-decoration: none;
+    transition: @link-transition;
+
+    &:focus,
+    &:hover,
+    &:active,
+    &.active {
+        color: @link-color-hover;
+        text-decoration: underline;
+    }
+}
+
+nav ul,
+nav ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+// Set default elements style
+img,
+object,
+embed,
+video {
+    max-width: 100%;
+}
+
+img {
+    vertical-align: middle;
+    
+    &:not(.img-fit*) {
+        height: auto;
+    }
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+svg {
+    max-height: 100%;
+    max-width: 100%;
+}

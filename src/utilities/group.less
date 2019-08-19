@@ -1,0 +1,39 @@
+/**
+ * @package exors.us
+ * @component group.less
+ * @description A helper utility for grouping items like in example buttons, tags, inputs etc.
+ */
+
+// Component
+// ========================================================================
+
+.is {
+
+    &-group {
+        display: flex;
+        margin-bottom: @spacing-sm;
+
+        &-inline {
+            display: inline-flex;
+            margin-bottom: @spacing-sm;
+        }
+    }
+}
+
+.has {
+    // group of buttons
+    &-group {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+
+        .is-group {
+            margin-bottom: 0;
+
+            &:not(:last-child) {
+                margin-right: @spacing-sm;
+            }
+        }
+    }
+}

@@ -1,0 +1,115 @@
+/**
+ * @package exors.us
+ * @component grid.less
+ * @description Flexbox grid with varied column sizes and breakpoints
+ */
+
+// Mixins
+// ========================================================================
+.col(@type: width, @index, @class: col) when (@index > 0) {
+    .@{class}-@{index} {
+        @{type}: percentage((@index / @grid-columns));
+    }
+};
+
+.build-columns() {
+
+    .make-columns(@class: ~'') {
+        each(range(@grid-columns), {
+            .col(width, @index, ~"col@{class}");
+            .col(margin-left, @index, ~"col@{class}-offset");
+            .col(left, @index, ~"col@{class}-push");
+            .col(right, @index, ~"col@{class}-pull");
+        });
+    };
+
+    .make-columns();
+
+    .col-auto {
+        flex: 0 0 auto;
+        max-width: none;
+        width: auto;
+    }
+
+    .col-center-auto {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .col-left-auto {
+        margin-left: auto;
+    }
+
+    .col-right-auto {
+        margin-right: auto;
+    }
+
+    each(@breakpoints, {
+        .mq-max(@value, {
+            .make-columns(~"-@{key}");
+            .col-@{key}-auto {
+                flex: 0 0 auto;
+                max-width: none;
+                width: auto;
+            }
+            .col-@{key}-center-auto {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .col-@{key}-left-auto {
+                margin-left: auto;
+            }
+
+            .col-@{key}-right-auto {
+                margin-right: auto;
+            }
+        });
+    });
+};
+
+// Component
+// ========================================================================
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -@layout-spacing;
+    margin-left: -@layout-spacing;
+
+    &.has-no-gap {
+        margin-right: 0;
+        margin-left: 0;
+
+        & > .column {
+            padding-right: 0;
+            padding-left: 0;
+        }
+    }
+
+    &.is-oneline {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+}
+
+.column {
+    flex: 1;
+    padding-right: @layout-spacing;
+    padding-left: @layout-spacing;
+    max-width: 100%;
+
+    &.col,
+    &.col-auto {
+        position: relative;
+        flex: none;
+    }
+
+    each(range(@grid-columns), {
+        &.col-@{value} {
+            &:extend(.column.col);
+        }
+    });
+}
+
+.build-columns;
+
