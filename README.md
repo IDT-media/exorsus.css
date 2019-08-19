@@ -21,6 +21,6 @@ Download the compiled and minified [exorsus.css](https://github.com/IDT-media/ex
 exorsus.css uses [Autoprefixer](https://github.com/postcss/autoprefixer) to make most features compatible with earlier browser versions and [Normalize.css](https://necolas.github.io/normalize.css/) for CSS resets.
 
 
-# Browser support
+# Documentation
 
 On to-do list.
