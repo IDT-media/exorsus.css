@@ -9,12 +9,12 @@
 .build-size(@breakpoints) {
     each(@breakpoints, {
         &.size-@{key} {
-            max-width: @value + 2 * (@layout-spacing * 10);
+            max-width: @value + 2 * (@grid-spacing * 10);
         }
     });
 };
 
-// Flex alignement
+// Flex alignment
 .flex-align(@class: ~'') {
 
     .align@{class}-start {
@@ -24,7 +24,6 @@
 
     .align@{class}-center {
         justify-content: center;
-        text-align: center;
     }
 
     .align@{class}-end {
@@ -109,8 +108,8 @@
 .container {
     margin-right: auto;
     margin-left: auto;
-    padding-right: @layout-spacing;
-    padding-left: @layout-spacing;
+    padding-right: @container-spacing;
+    padding-left: @container-spacing;
     width: 100%;
     .clearfix;
 
@@ -122,5 +121,5 @@
 
 // Max width container manipulator
 .build-size(@breakpoints);
-// Flex alignement helper
+// Flex alignment helper
 .build-flex;

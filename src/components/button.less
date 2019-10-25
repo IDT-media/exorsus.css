@@ -6,23 +6,37 @@
 
 // Variables
 // ========================================================================
+@btn-default: @color-default;
+@btn-primary: @color-primary;
+@btn-secondary: @color-secondary;
+@btn-link: @link-color;
+@btn-darker: @color-darker;
+@btn-dark: @color-dark;
+@btn-error: @error;
+@btn-warning: @warning;
+@btn-success: @success;
+@btn-notice: @notice;
+@btn-highlight: @highlight;
+
+@btn-border-width: @border-width;
+@btn-border-color: @border-color;
+@btn-radius: @radius-sm;
+@btn-text-color: @color-default;
+@btn-background: @color-light;
+@input-size: 3.6rem;
+
 @btn-variations: {
-    white: #FFFFFF;
-    black: #000000;
-    default: @color-default;
-    primary: @color-primary;
-    secondary: @color-secondary;
-    link: @link-color;
-    light: @color-light;
-    lighter: @color-lighter;
-    darker: @color-darker;
-    dark: @color-dark;
-    error: @error;
-    danger: @danger;
-    warning: @warning;
-    success: @success;
-    notice: @notice;
-    highlight: @highlight;
+    default: @btn-default;
+    primary: @btn-primary;
+    secondary: @btn-secondary;
+    link: @btn-link;
+    darker: @btn-darker;
+    dark: @btn-dark;
+    error: @btn-error;
+    warning: @btn-warning;
+    success: @btn-success;
+    notice: @btn-notice;
+    highlight: @btn-highlight;
 }
 // Mixins
 // ========================================================================
@@ -37,27 +51,27 @@
                 &:hover,
                 &:focus,
                 &.is-selected {
-                    background-color: darken(@value, 4%);
-                    border-color: darken(@value, 4%);
+                    background-color: darken(@value, 6%);
+                    border-color: darken(@value, 8%);
                 }
 
                 &:active,
                 &.is-selected {
-                    border-color: darken(@value, 5%);
+                    border-color: darken(@value, 8%);
                     box-shadow: 0 0 2px fade(@value, 25%);
                 }
 
                 & when (luma(@value) < 65%) {
-                    color: lighten(@value, 80%);
+                    color: @color-light;
                 }
             }
-        }
+        };
 
         & when (@key = link) {
             &.is-@{key} {
                 background-color: transparent;
                 border-color: transparent;
-                color: @value;
+                color: @link-color;
 
                 &:hover,
                 &:focus,
@@ -71,6 +85,7 @@
     each(@colors, {
         & when not (@key = link) and not (@key = white) and not (@key = light) {
             &.is-@{key}.is-outlined {
+
                 background-color: transparent;
                 border-color: @value;
                 color: @value;
@@ -78,19 +93,20 @@
                 &:hover,
                 &:focus,
                 &.is-selected {
-                    background-color: darken(@value, 4%);
-                    border-color: darken(@value, 4%);
+                    color: @color-light;
+                    background-color: @value;
                     & when (luma(@value) >= 65%) {
-                        color: darken(@value, 50%);
+                        color: @color-dark;
                     }
                     & when (luma(@value) < 65%) {
-                        color: lighten(@value, 80%);
+                        color: @color-light;
                     }
                 }
 
                 &:active,
                 &.is-selected {
-                    border-color: darken(@value, 5%);
+                    color: @value;
+                    border-color: darken(@value, 8%);
                     box-shadow: 0 0 2px fade(@value, 25%);
                 }
             }
@@ -100,7 +116,6 @@
 // Component
 // ========================================================================
 .btn {
-
     // Basic button
     appearance: none;
     display: inline-flex;
@@ -108,9 +123,10 @@
     justify-content: center;
     transition: background-color 200ms, border 200ms, box-shadow 200ms, color 200ms;
     outline: none;
-    border: @border-width solid @border-color;
-    border-radius: @radius-sm;
-    background-color: @color-light;
+    border: @btn-border-width solid @btn-border-color;
+    border-radius: @btn-radius;
+    box-shadow: none;
+    background-color: @btn-background;
     cursor: pointer;
     padding: @spacing-sm @spacing-lg;
     height: @input-size;
@@ -118,7 +134,7 @@
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
-    color: @input-color;
+    color: @btn-text-color;
     font-size: @body-font-size;
     user-select: none;
 
@@ -139,14 +155,10 @@
     }
 
     &:focus,
-    &:hover {
-        border-color: @border-color-darker;
-        text-decoration: none;
-    }
-
+    &:hover,
     &:active,
     &.active {
-        border-color: darken(@border-color-darker, 5%);
+        border-color: darken(@btn-border-color, 8%);
         text-decoration: none;
     }
 
@@ -186,15 +198,15 @@
             
             &:first-child:not(:last-child) {
                 margin-right: @spacing-sm;
-                margin-left: calc(-0.12em - @border-width);
+                margin-left: calc(-0.12em - @btn-border-width);
             }
             &:last-child:not(:first-child) {
-                margin-right: calc(-0.12em - @border-width);
+                margin-right: calc(-0.12em - @btn-border-width);
                 margin-left: @spacing-sm;
             }
             &:first-child:last-child {
-                margin-right: calc(-0.12em - @border-width);
-                margin-left: calc(-0.12em - @border-width);
+                margin-right: calc(-0.12em - @btn-border-width);
+                margin-left: calc(-0.12em - @btn-border-width);
             }
         }
     }
@@ -273,12 +285,12 @@
 
         &:not(:first-child):not(:last-child) {
             margin-right: 0;
-            margin-left: -@border-width;
+            margin-left: -@btn-border-width;
             border-radius: 0;
         }
 
         &:last-child:not(:first-child) {
-            margin-left: -@border-width;
+            margin-left: -@btn-border-width;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
         }

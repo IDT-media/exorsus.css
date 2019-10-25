@@ -1,7 +1,7 @@
 // COLOURS
 
 // Base colours
-@color-light: #ffffff;
+@color-light: #FFFFFF;
 @color-lighter: #f7f7f9;
 @color-darker: #e8e8e8;
 @color-dark: #2d3544;
@@ -19,38 +19,25 @@
 @notice: #a1d6e2;
 @highlight: #ffdd45;
 
-// Code options
-@code-color: @color-primary;
-@code-background: lighten(@color-lighter, 3%);
-
-// Table border and background
-@table-primary: @color-lighter;
-@table-secondary: darken(@table-primary, 3%);
-
 // Default background
 @background-light: @color-light;
 @background-dark: @color-dark;
 
-// TYPOGRAHPY
+
+// TYPOGRAPHY
 @base-font-size: 62.5%;
 @heading-weight: 500;
 @heading-margin: 1.2rem;
 @paragraph-margin: 1.6rem;
 
+
 @font-color: @color-default;
+@font-color-lighter: lighten(@font-color, 10%);
 @font-size: 1.6rem;
-@font-system: system, -apple-system, ".SFNSText-Regular", "San Francisco",
-    "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
-@font-serif: "Palatino Linotype", Palatino, Palladio, "URW Palladio L",
-    "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter",
-    "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow",
-    "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L",
-    Georgia, serif;
+@font-system: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+@font-serif: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif;
 @font-sans-serif: @font-system;
-@font-code: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console",
-    "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
-    "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier,
-    monospace;
+@font-code: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
 @font-strong: 700;
 
 // Links
@@ -78,20 +65,9 @@
 @radius-lg: 6px;
 @radius-circle: 290486px;
 
-// SHADOWS
-@shadow-color: @color-dark;
-// Shadow vairations
-@shadow: {
-    xsmall: 0 1px 4px fade(@shadow-color, 10%);
-    small: 0 1px 8px fade(@shadow-color, 10%);
-    medium: 0 5px 15px fade(@shadow-color, 10%);
-    large: 0 14px 25px fade(@shadow-color, 10%);
-    xlarge: 0 28px 50px fade(@shadow-color, 14%);
-};
-
 // SPACING
-@spacing-xs: 0.2rem;
-@spacing-sm: 0.5rem;
+@spacing-xs: .2rem;
+@spacing-sm: .5rem;
 @spacing-md: 1rem;
 @spacing-lg: 2rem;
 @spacing-xl: 4rem;
@@ -101,19 +77,13 @@
     small: @spacing-sm;
     medium: @spacing-md;
     large: @spacing-lg;
-    xlarge: @spacing-lg;
-};
-
-// FORMS
-@input-size: 3.6rem;
-@input-arrow: @border-color;
-@input-color: @font-color;
-@input-background: @background-light;
-@input-check: @color-primary;
+    xlarge: @spacing-xl;
+}
 
 // LAYOUT
-@layout-spacing: 1.5rem;
+@grid-spacing: 1.5rem;
 @grid-columns: 12;
+@container-spacing: @grid-spacing;
 
 // BREAKPOINTS
 @size-xs: 480px;
@@ -129,13 +99,19 @@
     md: @size-md;
     sm: @size-sm;
     xs: @size-xs;
-};
+}
 
 // Text size
+@text-xsmall: .75em;
+@text-small: .875em;
+@text-medium: 1em;
+@text-large: 1.2em;
+@text-xlarge: 1.4em;
+
 @text: {
-    xsmall: 0.75em;
-    small: 0.875em;
-    medium: 1em; // default
-    large: 1.2em;
-    xlarge: 1.4em;
-};
+    xsmall: @text-xsmall;
+    small: @text-small;
+    medium: @text-medium; // default
+    large: @text-large;
+    xlarge: @text-xlarge;
+}

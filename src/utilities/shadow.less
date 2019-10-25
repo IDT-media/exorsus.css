@@ -4,6 +4,25 @@
  * @description Helper classes for basic shadow on elements
  */
 
+// Variables
+// ========================================================================
+
+@shadow-color: @color-dark;
+
+@shadow-xsmall: 0 1px 4px fade(@shadow-color, 10%);
+@shadow-small: 0 1px 8px fade(@shadow-color, 10%);
+@shadow-medium: 0 5px 15px fade(@shadow-color, 10%);
+@shadow-large: 0 14px 25px fade(@shadow-color, 10%);
+@shadow-xlarge: 0 28px 50px fade(@shadow-color, 10%);
+// Shadow variations
+@shadow: {
+    xsmall: @shadow-xsmall;
+    small: @shadow-small;
+    medium: @shadow-medium;
+    large: @shadow-large;
+    xlarge: @shadow-xlarge;
+};
+
 // Mixins
 // ========================================================================
 // Build shadow vairations

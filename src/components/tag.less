@@ -6,23 +6,32 @@
 
 // Variables
 // ========================================================================
+
+@tag-default: @color-default;
+@tag-light: @color-lighter;
+@tag-primary: @color-primary;
+@tag-secondary: @color-secondary;
+@tag-error: @error;
+@tag-danger: @danger;
+@tag-warning: @warning;
+@tag-success: @success;
+@tag-notice: @notice;
+@tag-highlight: @highlight;
+
+@tag-radius: @radius;
+
+
 @tag-variations: {
-    white: #FFFFFF;
-    black: #000000;
-    default: @color-default;
-    primary: @color-primary;
-    secondary: @color-secondary;
-    link: @link-color;
-    light: @color-light;
-    lighter: @color-lighter;
-    darker: @color-darker;
-    dark: @color-dark;
-    error: @error;
-    danger: @danger;
-    warning: @warning;
-    success: @success;
-    notice: @notice;
-    highlight: @highlight;
+    default: @tag-default;
+    light: @tag-light;
+    primary: @tag-primary;
+    secondary: @tag-secondary;
+    error: @tag-error;
+    danger: @tag-danger;
+    warning: @tag-warning;
+    success: @tag-success;
+    notice: @tag-notice;
+    highlight: @tag-highlight;
 }
 
 // Mixins
@@ -34,11 +43,11 @@
             background-color: @value;
 
             & when (luma(@value) >=65%) {
-                color: darken(@value, 50%);
+                color: @color-dark;
             }
 
             & when (luma(@value) < 65%) {
-                color: lighten(@value, 80%);
+                color: @color-light;
             }
         }
     });
@@ -50,12 +59,13 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: @radius;
-    background-color: @color-lighter;
+    border-radius: @tag-radius;
+    background-color: @tag-default;
     padding-right: @spacing-md;
     padding-left: @spacing-md;
     height: 1.8em;
     white-space: nowrap;
+    color: @color-light;
     font-size: @text[small];
 
     // tag sizes

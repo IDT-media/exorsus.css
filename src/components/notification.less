@@ -6,17 +6,29 @@
 
 // Variables
 // ========================================================================
+
+@notification-default: @color-default;
+@notification-primary: @color-primary;
+@notification-secondary: @color-secondary;
+@notification-error: @error;
+@notification-danger: @danger;
+@notification-warning: @warning;
+@notification-success: @success;
+@notification-notice: @notice;
+@notification-highlight: @highlight;
+
+@notification-color: @color-light;
+
 @notification-variations: {
-    default: @color-default;
-    primary: @color-primary;
-    secondary: @color-secondary;
-    link: @link-color;
-    error: @error;
-    danger: @danger;
-    warning: @warning;
-    success: @success;
-    notice: @notice;
-    highlight: @highlight;
+    default: @notification-default;
+    primary: @notification-primary;
+    secondary: @notification-secondary;
+    error: @notification-error;
+    danger: @notification-danger;
+    warning: @notification-warning;
+    success: @notification-success;
+    notice: @notification-notice;
+    highlight: @notification-highlight;
 }
 
 // Mixins
@@ -30,10 +42,6 @@
             & when (luma(@value) >= 65%) {
                 color: darken(@value, 50%);
             }
-
-            & when (luma(@value) < 65%) {
-                color: lighten(@value, 80%);
-            }
         }
     });
 };
@@ -43,9 +51,9 @@
 .notification {
     position: relative;
     border-radius: @radius;
-    background-color: @color-default;
+    background-color: @notification-default;
     padding: @spacing-lg @spacing-lg;
-    color: @color-light;
+    color: @notification-color;
 
     &:not(:last-child) {
         margin-bottom: @spacing-sm;

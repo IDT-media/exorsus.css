@@ -4,6 +4,14 @@
  * @description A flexible content container with different elements to mix and match
  */
 
+// Variables
+// ========================================================================
+@card-background: @color-light;
+@card-border-radius: @radius;
+@card-border-width: @border-width;
+@card-border-color: @border-color;
+@card-spacing: @spacing-md @spacing-lg;
+
 // Component
 // ========================================================================
 
@@ -12,11 +20,11 @@
     position: relative;
     flex-direction: column;
     max-width: 100%;
-    background-color: @color-light;
-    border-radius: @radius;
+    background-color: @card-background;
+    border-radius: @card-border-radius;
 
     &.has-border {
-        border: @border-width solid @border-color;
+        border: @card-border-width solid @card-border-color;
     }
 
     &-media {
@@ -27,16 +35,16 @@
         &:first-child {
 
             & img {
-                border-top-left-radius: @radius;
-                border-top-right-radius: @radius;
+                border-top-left-radius: @card-border-radius;
+                border-top-right-radius: @card-border-radius;
             }
         }
 
         &:last-child {
 
             & img {
-                border-bottom-left-radius: @radius;
-                border-bottom-right-radius: @radius;
+                border-bottom-left-radius: @card-border-radius;
+                border-bottom-right-radius: @card-border-radius;
             }
         }
     }
@@ -47,7 +55,7 @@
     &-meta {
 
         &:not(.has-items) {
-            padding: @spacing-md @spacing-lg;
+            padding: @card-spacing;
         }
 
         & :first-child {

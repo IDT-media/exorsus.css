@@ -30,7 +30,7 @@
 .build-color-variations(@colors: @colors) {
 
     each(@colors, {
-        &-text-@{key} {
+        &-color-@{key} {
             color: @value;
         }
     });

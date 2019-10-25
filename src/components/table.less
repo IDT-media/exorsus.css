@@ -4,6 +4,14 @@
  * @description Basic tables styling including responsive table styles
  */
 
+// Variables
+// ========================================================================
+@table-background-primary: @color-lighter;
+@table-background-secondary: darken(@table-background-primary, 3%);
+@table-border-width: @border-width;
+@table-border-color: @border-color;
+@table-spacing: @spacing-md @spacing-xs;
+
 .table {
     width: 100%;
     border-collapse: collapse;
@@ -12,8 +20,8 @@
 
     td,
     th {
-        border-bottom: @border-width solid @border-color;
-        padding: @spacing-md @spacing-xs;
+        border-bottom: @table-border-width solid @table-border-color;
+        padding: @table-spacing;
     }
 
     th {
@@ -24,10 +32,10 @@
         tbody {
             tr {
                 &:nth-of-type(odd) {
-                    background: @table-primary;
+                    background: @table-background-primary;
                 }
                 &.active {
-                    background-color: @table-secondary;
+                    background-color: @table-background-secondary;
                 }
             }
 
@@ -38,7 +46,7 @@
         tbody {
             tr {
                 &:hover {
-                    background: @table-secondary;
+                    background: @table-background-secondary;
                 }
             }
         }
@@ -65,7 +73,7 @@
             tbody {
                 tr {
                     display: block;
-                    border-bottom: @border-width solid @border-color;
+                    border-bottom: @table-border-width solid @table-border-color;
 
                     &:last-child {
                         border-bottom: 0;

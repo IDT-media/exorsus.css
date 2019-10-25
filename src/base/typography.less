@@ -4,6 +4,13 @@
  * @description Sets base styling for most common typography elements
  */
 
+// Variables
+// ========================================================================
+// Code options
+@code-color: @color-primary;
+@code-background: lighten(@color-lighter, 3%);
+
+
 // Headings
 h1, .h1,
 h2, .h2,
@@ -105,10 +112,10 @@ kbd {
     color: @color-dark;
     font-weight: bold;
     white-space: nowrap;
-    transform: 200ms border-color ease;
+    transition: border-color 200ms ease;
 
     &:hover {
-        border-color: fade(@border-color, 10%);
+        border-color: @border-color-darker;
     }
 }
 
@@ -134,7 +141,7 @@ mark {
 blockquote {
     font-family: @font-serif;
     font-style: italic;
-    font-size: @font-size * 1.2;
+    font-size: @body-font-size * 1.2;
     border-left: @border-width-lg solid @border-color;
     margin-left: 0;
     padding: 1.5rem 1rem;
@@ -146,8 +153,8 @@ blockquote {
     & cite {
         font-size: 1.2rem;
         font-style: normal;
-        font-family: @font-sans-serif;
-        color: lighten(@font-color, 10%);
+        font-family: @body-font-family;
+        color: @font-color-lighter;
         display: block;
 
         &:before {
@@ -158,8 +165,8 @@ blockquote {
 
 cite {
     font-style: italic;
-    font-family: @font-sans-serif;
-    color: lighten(@font-color, 10%);
+    font-family:  @body-font-family;
+    color: @font-color-lighter;
 }
 
 // Preformated
@@ -174,19 +181,20 @@ code {
 }
 
 pre {
-    font-family: @font-code;
-    font-size: 1.4rem;
-    color: @code-color;
+    position: relative;
     border: @border-width solid @border-color;
     border-left: @border-width-lg solid @border-color;
+    border-radius: @radius-sm;
+    background-color: @code-background;
+    max-width: 800px;
+    overflow: auto;
+    tab-size: 4;
     white-space: normal;
     word-break: break-all;
     word-wrap: break-word;
-    overflow: auto;
-    position: relative;
-    border-radius: @radius-sm;
-    tab-size: 4;
-    max-width: 800px;
+    color: @code-color;
+    font-family: @font-code;
+    font-size: 1.4rem;
 
     &:before {
         content: attr(rel);
@@ -199,12 +207,13 @@ pre {
     }
 
     & > code {
-        white-space: pre;
         display: block;
+        border-radius: none;
+        background: transparent;
         padding: 1rem 1.5rem;
         overflow-x: auto;
+        white-space: pre;
         color: @code-color;
-        background-color: @code-background;
     }
 }
 
