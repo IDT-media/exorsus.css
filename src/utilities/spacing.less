@@ -10,33 +10,33 @@
 
     .@{type} {
         &@{name} {
-            margin: @size;
+            @{type}: @size;
         }
 
         &-left@{name} {
-            margin-left: @size;
+            @{type}-left: @size;
         }
 
         &-right@{name} {
-            margin-right: @size;
+            @{type}-right: @size;
         }
 
         &-top@{name} {
-            margin-top: @size;
+            @{type}-top: @size;
         }
 
         &-bottom@{name} {
-            margin-bottom: @size;
+            @{type}-bottom: @size;
         }
 
         &-vertical@{name} {
-            margin-top: @size;
-            margin-bottom: @size;
+            @{type}-top: @size;
+            @{type}-bottom: @size;
         }
 
         &-horizontal@{name} {
-            margin-left: @size;
-            margin-right: @size;
+            @{type}-left: @size;
+            @{type}-right: @size;
         }
     }
 };
@@ -45,33 +45,33 @@
 
     .remove-@{type} {
         &@{name} {
-            margin: 0;
+            @{type}: 0;
         }
 
         &-left@{name} {
-            margin-left: 0;
+            @{type}-left: 0;
         }
 
         &-right@{name} {
-            margin-right: 0;
+            @{type}-right: 0;
         }
 
         &-top@{name} {
-            margin-top: 0;
+            @{type}-top: 0;
         }
 
         &-bottom@{name} {
-            margin-bottom: 0;
+            @{type}-bottom: 0;
         }
 
         &-vertical@{name} {
-            margin-top: 0;
-            margin-bottom: 0;
+            @{type}-top: 0;
+            @{type}-bottom: 0;
         }
 
         &-horizontal@{name} {
-            margin-right: 0;
-            margin-left: 0;
+            @{type}-right: 0;
+            @{type}-left: 0;
         }
     }
 };
