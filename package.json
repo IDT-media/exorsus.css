@@ -1,6 +1,6 @@
 {
   "name": "exorsus.css",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple and responsive flexbox based LESS Framework",
   "config": {
     "path_dist": "./dist"
